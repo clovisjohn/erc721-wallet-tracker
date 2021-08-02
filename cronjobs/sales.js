@@ -23,7 +23,7 @@ module.exports = {
     while(1)
     {
 
-      let url = `${openseaEventsUrl}?asset_contract_address=${process.env.CONTRACT_ADDRESS}&event_type=successful&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
+      let url = `${openseaEventsUrl}?account_address=${process.env.CONTRACT_ADDRESS}&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
       try {
         var res = await fetch(url, settings);
         
@@ -49,10 +49,8 @@ module.exports = {
               .setColor('#0099ff')
               .setTitle(event.asset.name)
               .setURL(event.asset.permalink)
-              .setDescription(`has just been sold for ${event.total_price/(1e18)}\u039E`)
+              .setDescription(event.asset.event_type)
               .setThumbnail(event.asset.image_original_url)
-              .addField("From", `[${event.seller.user?.username || event.seller.address.slice(0,8)}](https://etherscan.io/address/${event.seller.address})`, true)
-              .addField("To", `[${event.winner_account.user?.username || event.winner_account.address.slice(0,8)}](https://etherscan.io/address/${event.winner_account.address})`, true);
 
             client.channels.fetch(process.env.DISCORD_SALES_CHANNEL_ID)
               .then(channel => {
