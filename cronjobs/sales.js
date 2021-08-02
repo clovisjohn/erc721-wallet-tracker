@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const { openseaEventsUrl } = require('../config.json');
 
-var accounts=[process.env.ACCOUNT_ADDRESS]
+var accounts=["0xa5d31a3ed981ec2fc2b10987be0dd04dfc6b8c38"]
 var salesCache = [];
 var lastTimestamp = null;
 
