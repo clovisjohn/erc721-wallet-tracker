@@ -18,6 +18,10 @@
       "description": "Pretty self explanatory",
       "required": true
     },
+    "ACCOUNT_ADDRESS": {
+      "description": "Ethereum address for the NFT Smart Contract",
+      "required": true
+    },
     "DISCORD_SALES_CHANNEL_ID": {
       "description": "The discord channel id where sales events should be posted to, should look like a long number",
       "required": true
