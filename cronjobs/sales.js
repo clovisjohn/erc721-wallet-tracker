@@ -23,7 +23,7 @@ module.exports = {
     while(1)
     {
 
-      let url = `${openseaEventsUrl}?account_address=${process.env.CONTRACT_ADDRESS}&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
+      let url = `${openseaEventsUrl}?account_address=${process.env.ACCOUNT_ADDRESS}&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
       try {
         var res = await fetch(url, settings);
         
