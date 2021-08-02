@@ -23,7 +23,7 @@ module.exports = {
     };
     while(1)
     {
-	for (account in accounts) {
+	for (account of accounts) {
 
       let url = `${openseaEventsUrl}?account_address=${account}&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
       try {
