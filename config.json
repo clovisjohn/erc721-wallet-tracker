@@ -1,8 +1,5 @@
 {
 	"prefix": "!",
   "openseaMetadataUrl": "https://api.opensea.io/api/v1/asset",
-  "openseaEventsUrl": "https://api.opensea.io/api/v1/events",
-  "DISCORD_BOT_TOKEN": "ODcxNTkxOTE0NzExOTU3NjA0.YQdjOQ.A5o7azvtgXIzCBaOVzQZ27EWp88",
-  "ACCOUNT_ADDRESS": "0xfef1f1e87818593485f18d20bf7af4f8aaf75628",
-  "DISCORD_SALES_CHANNEL_ID": "862570846076534827"
+  "openseaEventsUrl": "https://api.opensea.io/api/v1/events"
 }
