@@ -49,7 +49,7 @@ module.exports = {
               .setColor('#0099ff')
               .setTitle(event.asset.name)
               .setURL(event.asset.permalink)
-              .setDescription(event.asset.event_type)
+              .setDescription(event.event_type)
               .setThumbnail(event.asset.image_original_url)
 
             client.channels.fetch(process.env.DISCORD_SALES_CHANNEL_ID)
