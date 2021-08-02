@@ -51,7 +51,7 @@ module.exports = {
               .setURL(event.asset.permalink)
               .setDescription(event.event_type)
               .setThumbnail(event.asset.image_original_url)
-              .addField("From", `[${event.from_account.user.username || event.from_account.address.slice(0,8)}](https://etherscan.io/address/${event.seller.address})`, true)
+              .addField("From", `[${event.from_account.user.username || event.from_account.address.slice(0,8)}](https://etherscan.io/address/${event.from_account.address})`, true)
 
             client.channels.fetch(process.env.DISCORD_SALES_CHANNEL_ID)
               .then(channel => {
