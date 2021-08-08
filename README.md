@@ -1,16 +1,14 @@
 # NFT Discord Bot
 This is a discord bot for ERC721 NFT collections, all the token metadata is being retrieved from opensea at the moment, instead of directly from the tokenURI in the smart contract. The bot will track nft related transactions of specified accounts
 
-![floor command example](https://i.imgur.com/Stmccsn.png)
-
 ## Automatic Posts
-### **Sales**
+### **Events**
 The bot will track nft related transactions of specified accounts. The bot will look up events on OpenSea every 15 seconds, and all events will be posted to the configured Discord channel.
 
 ![Sales bot example](https://i.imgur.com/jUHRJWi.png)
 
 # Configuration
-| Var      | Description |Location |
+| Var      | Description | Location |
 | accounts      | list of accounts to track       | You can find and modify in it /cronjobs/sales.js |
 | Env Var      | Description |
 | ----------- | ----------- |
