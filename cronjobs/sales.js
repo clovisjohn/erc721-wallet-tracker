@@ -53,6 +53,7 @@ module.exports = {
               .setURL(event.asset.permalink)
               .setDescription(event.event_type)
               .setThumbnail(event.asset.image_url)
+	      .addField("collection", `[${event.asset.collection.name}](https://opensea.io/collection/fluf-world/${event.asset.collection..slug})`, true)
               .addField("From", `[${event.from_account.user.username || event.from_account.address.slice(0,8)}](https://etherscan.io/address/${event.from_account.address})`, true)
 	      .addField("To", `[${event.to_account.user.username || event.to_account.address.slice(0,8)}](https://etherscan.io/address/${event.to_account.address})`, true)
 
