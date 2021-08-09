@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const { openseaEventsUrl } = require('../config.json');
 
-var accounts=["0x0f0eae91990140c560d4156db4f00c854dc8f09e","0x96079afc8e407f6020b6f2c6a854343a384ea2a5","0x598fdd699c874440ebd31fdcf5cffc1500735a9f","0xfef1f1e87818593485f18d20bf7af4f8aaf75628","0x727f25672f4f2815831ed496c87b33faeb639238"]
+var accounts=["0x0f0eae91990140c560d4156db4f00c854dc8f09e","0x5ea9681c3ab9b5739810f8b91ae65ec47de62119","0x96079afc8e407f6020b6f2c6a854343a384ea2a5","0x598fdd699c874440ebd31fdcf5cffc1500735a9f","0xfef1f1e87818593485f18d20bf7af4f8aaf75628","0x727f25672f4f2815831ed496c87b33faeb639238"]
 var salesCache = [];
 var lastTimestamp = null;
 
