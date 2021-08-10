@@ -1,7 +1,7 @@
 {
   "name": "NFT Discord Bot",
-  "description": "A Discord bot for ERC721 NFT Collections",
-  "logo": "https://ipfs.io/ipfs/QmbnLfbgx4h99kXdPSdZkbfYe2gnMZYgkzQfK7sxLGn13v",
+  "description": "A Discord bot for getting NFT data from OpenSea",
+  "logo": "https://i.imgur.com/g9c44tp.png",
   "keywords": [
     "erc721",
     "nft",
@@ -16,10 +16,6 @@
     },
     "DISCORD_BOT_TOKEN": {
       "description": "Pretty self explanatory",
-      "required": true
-    },
-    "ACCOUNT_ADDRESS": {
-      "description": "Ethereum address for the NFT Smart Contract",
       "required": true
     },
     "DISCORD_SALES_CHANNEL_ID": {
