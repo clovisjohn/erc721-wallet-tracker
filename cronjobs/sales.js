@@ -2,17 +2,23 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const { openseaEventsUrl } = require('../config.json');
 
-var accounts=["0x0f0eae91990140c560d4156db4f00c854dc8f09e","0x5ea9681c3ab9b5739810f8b91ae65ec47de62119","0x96079afc8e407f6020b6f2c6a854343a384ea2a5","0x598fdd699c874440ebd31fdcf5cffc1500735a9f","0xfef1f1e87818593485f18d20bf7af4f8aaf75628","0x727f25672f4f2815831ed496c87b33faeb639238"]
 var salesCache = [];
 var lastTimestamp = null;
 
 module.exports = {
   name: 'sales',
   description: 'sales bot!',
-  schedule: '0,30 * * * * *',
+  interval: 30000,
   async execute(client) {
-    if (lastTimestamp == null) lastTimestamp = Math.floor(Date.now()/1000) - 60;
+    if (lastTimestamp == null) {
+      lastTimestamp = Math.floor(Date.now()/1000) - 120;
+    } else {
+      lastTimestamp -= 30;
+    }
     let newTimestamp = Math.floor(Date.now()/1000) - 30;
+    // we're retrieving events from -90 to -30 seconds ago each time, and each query overlaps the previous query by 30 seconds
+    // doing this to try to resolve some intermittent issues with events being missed by the bot, suspect it's due to OpenSea api being slow to update the events data
+    // duplicate events are filtered out by the salesCache array
 
     let offset = 0;
     let settings = { 
@@ -23,12 +29,10 @@ module.exports = {
     };
     while(1)
     {
-	for (account of accounts) {
 
-      let url = `${openseaEventsUrl}?account_address=${account}&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
+      let url = `${openseaEventsUrl}?collection_slug=${process.env.OPEN_SEA_COLLECTION_NAME}&event_type=successful&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
       try {
         var res = await fetch(url, settings);
-        
         if (res.status != 200) {
           throw new Error(`Couldn't retrieve events: ${res.statusText}`);
         }
@@ -44,18 +48,17 @@ module.exports = {
               return;
             } else {
               salesCache.push(event.id);
-              if (salesCache.length > 20) salesCache.shift();
+              if (salesCache.length > 200) salesCache.shift();
             }
 
             const embedMsg = new Discord.MessageEmbed()
               .setColor('#0099ff')
               .setTitle(event.asset.name)
               .setURL(event.asset.permalink)
-              .setDescription(event.event_type)
+              .setDescription(`has just been sold for ${event.total_price/(1e18)}\u039E`)
               .setThumbnail(event.asset.image_url)
-	      .addField("collection", `[${event.asset.collection.name}](https://opensea.io/collection/${event.asset.collection.slug})`, true)
-              .addField("From", `[${event.from_account.user.username || event.from_account.address.slice(0,8)}](https://etherscan.io/address/${event.from_account.address})`, true)
-	      .addField("To", `[${event.to_account.user.username || event.to_account.address.slice(0,8)}](https://etherscan.io/address/${event.to_account.address})`, true)
+              .addField("From", `[${event.seller.user?.username || event.seller.address.slice(0,8)}](https://etherscan.io/address/${event.seller.address})`, true)
+              .addField("To", `[${event.winner_account.user?.username || event.winner_account.address.slice(0,8)}](https://etherscan.io/address/${event.winner_account.address})`, true);
 
             client.channels.fetch(process.env.DISCORD_SALES_CHANNEL_ID)
               .then(channel => {
@@ -68,12 +71,10 @@ module.exports = {
       catch (error) {
         console.error
       }
-	}
+
       offset += data.asset_events.length;
-	
     }
 
     lastTimestamp = newTimestamp;
   }
-
 };
