@@ -1,5 +1,5 @@
 # NFT Discord Bot
-This is bot to track a project minting progess
+This is a bot to track a project minting progess
 
 
 # Configuration
