@@ -32,7 +32,7 @@
     },
     "OPEN_SEA_COLLECTION_NAME": {
       "description": "The collection slug name on OpenSea, get this from the browser when you are viewing a collection.",
-      "required": true
+      "required": false
     }
   },
   "image": "heroku/nodejs",
