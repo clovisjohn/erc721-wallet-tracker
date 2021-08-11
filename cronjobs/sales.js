@@ -54,13 +54,13 @@ module.exports = {
 
             const embedMsg = new Discord.MessageEmbed()
               .setColor('#0099ff')
-              .setTitle(event.asset.name)
+              .setTitle(event.asset.token_id)
               .setURL(event.asset.permalink)
               .setDescription(event.event_type)
               .setThumbnail(event.asset.image_url)
-	            .addField("collection", `[${event.asset.collection.name}](https://opensea.io/collection/${event.asset.collection.slug})`, true)
+	      .addField("collection", `[${event.asset.collection.name}](https://opensea.io/collection/${event.asset.collection.slug})`, true)
               .addField("From", `[${event.from_account.user.username || event.from_account.address.slice(0,8)}](https://etherscan.io/address/${event.from_account.address})`, true)
-	            .addField("To", `[${event.to_account.user.username || event.to_account.address.slice(0,8)}](https://etherscan.io/address/${event.to_account.address})`, true)
+	      .addField("To", `[${event.to_account.user.username || event.to_account.address.slice(0,8)}](https://etherscan.io/address/${event.to_account.address})`, true)
 
             client.channels.fetch(process.env.DISCORD_SALES_CHANNEL_ID)
               .then(channel => {
