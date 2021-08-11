@@ -30,7 +30,7 @@ module.exports = {
     while(1)
     {
 
-      let url = `${openseaEventsUrl}?collection_slug=${process.env.OPEN_SEA_COLLECTION_NAME}&event_type=successful&only_opensea=false&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
+      let url = `${openseaEventsUrl}?asset_contract_address=${process.env.CONTRACT_ADDRESS}&only_opensea=false&account_address=0x0000000000000000000000000000000000000000&offset=${offset}&limit=50&occurred_after=${lastTimestamp}&occurred_before=${newTimestamp}`;
       try {
         var res = await fetch(url, settings);
         if (res.status != 200) {
